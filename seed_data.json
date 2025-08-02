@@ -1,0 +1,133 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "israelneto",
+      "email": "israel@example.com",
+      "password_hash": "$2b$10$abc123...",
+      "profile_picture": "https://example.com/avatars/israel.png",
+      "country_code": "BR",
+      "bio": "Amante do xadrez e café forte.",
+      "created_at": "2025-08-02T12:00:00Z",
+      "last_login": "2025-08-02T20:00:00Z"
+    },
+    {
+      "id": 2,
+      "username": "gm_magnus",
+      "email": "magnus@example.com",
+      "password_hash": "$2b$10$xyz456...",
+      "profile_picture": "https://example.com/avatars/magnus.png",
+      "country_code": "NO",
+      "bio": "World Champion 🏆",
+      "created_at": "2025-07-10T09:00:00Z",
+      "last_login": "2025-08-01T18:00:00Z"
+    },
+    {
+      "id": 3,
+      "username": "hikaru",
+      "email": "hikaru@example.com",
+      "password_hash": "$2b$10$qwe789...",
+      "profile_picture": "https://example.com/avatars/hikaru.png",
+      "country_code": "US",
+      "bio": "Streamer e GM de blitz e bullet.",
+      "created_at": "2025-06-05T14:30:00Z",
+      "last_login": "2025-08-01T10:15:00Z"
+    }
+  ],
+
+  "games": [
+    {
+      "id": 1,
+      "white_player_id": 1,
+      "black_player_id": 2,
+      "mode": "blitz",
+      "time_control": "3+2",
+      "status": "finished",
+      "result": "0-1",
+      "started_at": "2025-08-02T18:00:00Z",
+      "finished_at": "2025-08-02T18:15:00Z"
+    },
+    {
+      "id": 2,
+      "white_player_id": 2,
+      "black_player_id": 3,
+      "mode": "bullet",
+      "time_control": "1+0",
+      "status": "finished",
+      "result": "1-0",
+      "started_at": "2025-07-30T14:00:00Z",
+      "finished_at": "2025-07-30T14:02:00Z"
+    },
+    {
+      "id": 3,
+      "white_player_id": 1,
+      "black_player_id": 3,
+      "mode": "rapid",
+      "time_control": "10+0",
+      "status": "finished",
+      "result": "1/2-1/2",
+      "started_at": "2025-07-28T16:00:00Z",
+      "finished_at": "2025-07-28T16:40:00Z"
+    }
+  ],
+
+  "puzzles": [
+    {
+      "id": 1,
+      "fen": "r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3",
+      "solution": "Bb5",
+      "theme": "pin",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "fen": "8/8/8/2p5/1kP5/1P6/1K6/8 w - - 0 1",
+      "solution": "Kc2",
+      "theme": "pawn_endgame",
+      "difficulty": "medium"
+    },
+    {
+      "id": 3,
+      "fen": "r4rk1/pp1n1ppp/2p1pn2/q2p4/3P4/2PBPN2/PP1N1PPP/R2Q1RK1 w - - 0 1",
+      "solution": "Nb3",
+      "theme": "positional",
+      "difficulty": "hard"
+    }
+  ],
+
+  "tournaments": [
+    {
+      "id": 1,
+      "name": "Open Blitz Arena",
+      "type": "arena",
+      "mode": "blitz",
+      "start_date": "2025-08-10T18:00:00Z",
+      "end_date": "2025-08-10T20:00:00Z"
+    },
+    {
+      "id": 2,
+      "name": "Campeonato Bullet Mundial",
+      "type": "round_robin",
+      "mode": "bullet",
+      "start_date": "2025-09-05T15:00:00Z",
+      "end_date": "2025-09-06T18:00:00Z"
+    }
+  ],
+
+  "clubs": [
+    {
+      "id": 1,
+      "name": "Clube de Xadrez BR",
+      "description": "Comunidade brasileira de xadrez",
+      "owner_id": 1,
+      "created_at": "2025-07-20T10:00:00Z"
+    },
+    {
+      "id": 2,
+      "name": "Chess Masters World",
+      "description": "Clube para GMs e jogadores titulados",
+      "owner_id": 2,
+      "created_at": "2025-07-15T12:00:00Z"
+    }
+  ]
+}
