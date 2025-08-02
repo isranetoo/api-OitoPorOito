@@ -6,7 +6,6 @@ models.Base.metadata.create_all(bind=database.engine)
 
 app = FastAPI(title="Chess API")
 
-# Rotas
 app.include_router(users.router)
 app.include_router(games.router)
 app.include_router(puzzles.router)

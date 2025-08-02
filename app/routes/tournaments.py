@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
+from datetime import datetime
 from .. import models, schemas
 from ..database import SessionLocal
 
@@ -12,6 +13,7 @@ def get_db():
     finally:
         db.close()
 
+# Criar torneio
 @router.post("/", response_model=schemas.Tournament)
 def create_tournament(tournament: schemas.TournamentCreate, db: Session = Depends(get_db)):
     db_tournament = models.Tournament(**tournament.dict())
@@ -20,6 +22,16 @@ def create_tournament(tournament: schemas.TournamentCreate, db: Session = Depend
     db.refresh(db_tournament)
     return db_tournament
 
+# Listar todos os torneios
 @router.get("/", response_model=list[schemas.Tournament])
 def get_tournaments(db: Session = Depends(get_db)):
     return db.query(models.Tournament).all()
+
+# Listar torneios ativos
+@router.get("/active", response_model=list[schemas.Tournament])
+def get_active_tournaments(db: Session = Depends(get_db)):
+    now = datetime.utcnow()
+    return db.query(models.Tournament).filter(
+        models.Tournament.start_date <= now,
+        models.Tournament.end_date >= now
+    ).all()
