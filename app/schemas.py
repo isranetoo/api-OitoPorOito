@@ -1,39 +1,29 @@
 from pydantic import BaseModel
 from datetime import datetime
-from typing import Optional, List
+from typing import Optional
 
-# ===== User & Rating =====
-class RatingBase(BaseModel):
-    mode: str
-    rating: int
-    highest_rating: Optional[int]
-
-class Rating(RatingBase):
-    id: int
-    updated_at: datetime
-
-    class Config:
-        from_attributes = True  # Pydantic v2
-
+# ========================= USERS =========================
 class UserBase(BaseModel):
     username: str
     email: str
-    country_code: Optional[str]
-    bio: Optional[str]
+    password_hash: str
+    profile_picture: Optional[str] = None
+    country_code: Optional[str] = None
+    bio: Optional[str] = None
 
 class UserCreate(UserBase):
-    password: str
+    pass
 
 class User(UserBase):
     id: int
-    created_at: datetime
-    last_login: Optional[datetime]
-    ratings: List[Rating] = []
+    created_at: Optional[datetime] = None
+    last_login: Optional[datetime] = None
 
     class Config:
-        from_attributes = True  # Pydantic v2
+        from_attributes = True
 
-# ===== Game =====
+
+# ========================= GAMES =========================
 class GameBase(BaseModel):
     white_player_id: int
     black_player_id: int
@@ -47,13 +37,14 @@ class GameCreate(GameBase):
 
 class Game(GameBase):
     id: int
-    started_at: datetime
-    finished_at: Optional[datetime]
+    started_at: Optional[datetime] = None
+    finished_at: Optional[datetime] = None
 
     class Config:
-        from_attributes = True  # Pydantic v2
+        from_attributes = True
 
-# ===== Puzzle =====
+
+# ========================= PUZZLES =========================
 class PuzzleBase(BaseModel):
     fen: str
     solution: str
@@ -67,9 +58,10 @@ class Puzzle(PuzzleBase):
     id: int
 
     class Config:
-        from_attributes = True  # Pydantic v2
+        from_attributes = True
 
-# ===== Tournament =====
+
+# ========================= TOURNAMENTS =========================
 class TournamentBase(BaseModel):
     name: str
     type: Optional[str]
@@ -84,9 +76,10 @@ class Tournament(TournamentBase):
     id: int
 
     class Config:
-        from_attributes = True  # Pydantic v2
+        from_attributes = True
 
-# ===== Club =====
+
+# ========================= CLUBS =========================
 class ClubBase(BaseModel):
     name: str
     description: Optional[str]
@@ -97,7 +90,7 @@ class ClubCreate(ClubBase):
 
 class Club(ClubBase):
     id: int
-    created_at: datetime
+    created_at: Optional[datetime] = None
 
     class Config:
-        from_attributes = True  # Pydantic v2
+        from_attributes = True

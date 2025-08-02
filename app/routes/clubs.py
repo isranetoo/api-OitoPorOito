@@ -21,7 +21,7 @@ def create_club(club: schemas.ClubCreate, db: Session = Depends(get_db)):
     db.refresh(db_club)
     return db_club
 
-@router.get("/", response_model=list[schemas.Club])
+@router.get("", response_model=list[schemas.Club])
 def get_clubs(
     db: Session = Depends(get_db),
     page: int = Query(1, ge=1),

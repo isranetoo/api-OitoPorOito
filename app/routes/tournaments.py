@@ -14,7 +14,7 @@ def get_db():
     finally:
         db.close()
 
-@router.get("/", response_model=list[schemas.Tournament])
+@router.get("", response_model=list[schemas.Tournament])
 def get_tournaments(
     db: Session = Depends(get_db),
     page: int = Query(1, ge=1),

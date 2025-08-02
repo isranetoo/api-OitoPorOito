@@ -14,7 +14,7 @@ def get_db():
         db.close()
 
 # Criar usuário
-@router.post("/", response_model=schemas.User)
+@router.post("", response_model=schemas.User)
 def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
     # Verifica se já existe usuário com mesmo e-mail
     db_user = db.query(models.User).filter(models.User.email == user.email).first()
@@ -36,9 +36,11 @@ def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
     return new_user
 
 # Listar todos os usuários
-@router.get("/", response_model=list[schemas.User])
+@router.get("", response_model=list[schemas.User])
 def get_users(db: Session = Depends(get_db)):
-    return db.query(models.User).all()
+    users = db.query(models.User).all()
+    print("DEBUG USERS:", users)  # <-- ver no terminal
+    return users
 
 # Buscar usuário por ID
 @router.get("/{user_id}", response_model=schemas.User)

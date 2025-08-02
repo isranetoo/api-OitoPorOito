@@ -13,7 +13,7 @@ def get_db():
     finally:
         db.close()
 
-@router.get("/", response_model=list[schemas.Puzzle])
+@router.get("", response_model=list[schemas.Puzzle])
 def get_puzzles(
     db: Session = Depends(get_db),
     page: int = Query(1, ge=1),
