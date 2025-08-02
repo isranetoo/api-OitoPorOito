@@ -3,7 +3,7 @@ from datetime import datetime
 from app.database import SessionLocal, engine, Base
 from app import models
 
-# Criar tabelas se não existirem
+# Criar tabelas caso não existam
 Base.metadata.create_all(bind=engine)
 
 def parse_datetime(value):
@@ -18,11 +18,10 @@ def parse_datetime(value):
 def seed_database():
     db = SessionLocal()
 
-    # Ler JSON
     with open("seed_data.json", "r", encoding="utf-8") as f:
         data = json.load(f)
 
-    # ===== USERS =====
+    # USERS
     for user in data.get("users", []):
         db_user = models.User(
             id=user["id"],
@@ -37,7 +36,7 @@ def seed_database():
         )
         db.merge(db_user)
 
-    # ===== GAMES =====
+    # GAMES
     for game in data.get("games", []):
         db_game = models.Game(
             id=game["id"],
@@ -52,7 +51,7 @@ def seed_database():
         )
         db.merge(db_game)
 
-    # ===== PUZZLES =====
+    # PUZZLES
     for puzzle in data.get("puzzles", []):
         db_puzzle = models.Puzzle(
             id=puzzle["id"],
@@ -63,7 +62,7 @@ def seed_database():
         )
         db.merge(db_puzzle)
 
-    # ===== TOURNAMENTS =====
+    # TOURNAMENTS
     for t in data.get("tournaments", []):
         db_tournament = models.Tournament(
             id=t["id"],
@@ -75,7 +74,7 @@ def seed_database():
         )
         db.merge(db_tournament)
 
-    # ===== CLUBS =====
+    # CLUBS
     for club in data.get("clubs", []):
         db_club = models.Club(
             id=club["id"],
@@ -88,7 +87,7 @@ def seed_database():
 
     db.commit()
     db.close()
-    print("✅ Banco SQLite populado com sucesso!")
+    print("✅ Banco populado com sucesso!")
 
 if __name__ == "__main__":
     seed_database()
