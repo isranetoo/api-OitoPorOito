@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from . import models, database
 from .routes import users, games, puzzles, tournaments, clubs
 from .routes import ratings
+from .routes import profile
 
 
 models.Base.metadata.create_all(bind=database.engine)
@@ -25,6 +26,7 @@ app.include_router(puzzles.router)
 app.include_router(tournaments.router)
 app.include_router(clubs.router)
 app.include_router(ratings.router)
+app.include_router(profile.router)
 
 @app.get("/")
 def root():

@@ -1,34 +1,30 @@
-export default function Table({ columns, data }) {
+export default function Table({ columns, data, onRowClick }) {
   return (
-    <div className="overflow-x-auto mt-4">
-      <table className="min-w-full border border-gray-300 bg-white">
-        <thead>
-          <tr className="bg-gray-200">
+    <table className="w-full border-collapse bg-gray-800 text-white rounded-lg overflow-hidden">
+      <thead className="bg-gray-700">
+        <tr>
+          {columns.map((col) => (
+            <th key={col} className="px-4 py-2 text-left capitalize">
+              {col.replace("_", " ")}
+            </th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {data.map((row, idx) => (
+          <tr
+            key={idx}
+            className={`border-b border-gray-600 hover:bg-gray-600 transition cursor-pointer`}
+            onClick={() => onRowClick && onRowClick(row)} // clique na linha
+          >
             {columns.map((col) => (
-              <th key={col} className="px-4 py-2 border border-gray-300">{col}</th>
+              <td key={col} className="px-4 py-2">
+                {row[col]}
+              </td>
             ))}
           </tr>
-        </thead>
-        <tbody>
-          {data.length > 0 ? (
-            data.map((row, idx) => (
-              <tr key={idx} className="hover:bg-gray-100">
-                {columns.map((col) => (
-                  <td key={col} className="px-4 py-2 border border-gray-300">
-                    {row[col] ?? "-"}
-                  </td>
-                ))}
-              </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan={columns.length} className="text-center py-4">
-                Nenhum dado encontrado
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
-    </div>
+        ))}
+      </tbody>
+    </table>
   );
 }

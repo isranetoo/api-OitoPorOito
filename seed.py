@@ -25,16 +25,31 @@ def seed_database():
     for user in data.get("users", []):
         db_user = models.User(
             id=user["id"],
+            name=user.get("name"), 
             username=user["username"],
             email=user["email"],
             password_hash=user["password_hash"],
             profile_picture=user.get("profile_picture"),
             country_code=user.get("country_code"),
+            federation=user.get("federation"),
+            global_rank=user.get("global_rank"),
+            global_rating=user.get("global_rating"),
             bio=user.get("bio"),
             created_at=parse_datetime(user.get("created_at")),
             last_login=parse_datetime(user.get("last_login"))
         )
+
         db.merge(db_user)
+        db.commit()  # precisa commit pra gerar o ID se for autoincrement
+
+        # Criar ratings individuais
+        for mode, rating_value in user.get("ratings", {}).items():
+            db_rating = models.Rating(
+                user_id=user["id"],
+                mode=mode,
+                rating=rating_value
+            )
+            db.merge(db_rating)
 
     # GAMES
     for game in data.get("games", []):

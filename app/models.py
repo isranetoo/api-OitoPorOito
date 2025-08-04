@@ -8,11 +8,15 @@ class User(Base):
     __tablename__ = "users"
 
     id = Column(Integer, primary_key=True, index=True)
+    name = Column(String(100)) 
     username = Column(String(50), unique=True, nullable=False)
     email = Column(String(100), unique=True, nullable=False)
     password_hash = Column(Text, nullable=False)
     profile_picture = Column(Text)
     country_code = Column(String(2))
+    federation = Column(String(3))  # <-- Código da federação FIDE
+    global_rank = Column(Integer)   # <-- Posição no ranking mundial
+    global_rating = Column(Integer) # <-- Rating global
     bio = Column(Text)
     created_at = Column(DateTime, default=func.now())
     last_login = Column(DateTime)

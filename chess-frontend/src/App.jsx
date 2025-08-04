@@ -6,6 +6,7 @@ import PuzzlesPage from "./pages/PuzzlesPage";
 import TournamentsPage from "./pages/TournamentsPage";
 import ClubsPage from "./pages/ClubsPage";
 import TopPlayers from "./pages/TopPlayers";
+import ProfilePage from "./pages/ProfilePage";
 
 export default function App() {
   return (
@@ -19,6 +20,8 @@ export default function App() {
         <Route path="/tournaments" element={<TournamentsPage />} />
         <Route path="/clubs" element={<ClubsPage />} />
         <Route path="/top-players" element={<TopPlayers />} />
+        <Route path="/profile/:username" element={<ProfilePage />} />
+        <Route path="*" element={<h1 className="p-4">Página não encontrada</h1>} />
       </Routes>
     </Router>
   );
